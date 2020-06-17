@@ -6,9 +6,10 @@
 
 
 <%
-	String name="";
-	String address="";
-	String tel="";
+	//サーブレットから値を受け取っている
+	String name=(String)request.getAttribute("name");
+	String address=(String)request.getAttribute("address");
+	String tel=(String)request.getAttribute("tel");
 	String categoryid="";
 
 
@@ -25,7 +26,10 @@
 <body>
 
 <p>住所録管理システム：住所録登録</p>
-<form>
+
+
+//jspからサーブレットへ値を渡している
+<form method="GET" action="./AddBL">
 
 <table  class="sampleTable">
 	<tr>
