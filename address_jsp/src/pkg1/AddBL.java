@@ -1,6 +1,7 @@
 package pkg1;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -54,12 +55,23 @@ public class AddBL extends HttpServlet {
 			errmsg=ERRMSG_ADDRESS02 + "<BR>";
 		}else if(tel.getBytes().length >  0 && !(tel.matches("[0-9]{3}-[0-9]{4}-[0-9]{4}")) ) {
 			errmsg=ERRMSG_TEL01 + "<BR>";
+
 		}
+
 		//サーブレットからjspへ渡している
 		request.setAttribute("name",name);
 		request.setAttribute("address",address);
 		request.setAttribute("tel",tel);
 		request.setAttribute("errmsg",errmsg);
+
+		//errmsgがブランクの場合とそれ以外の遷移
+		if(errmsg == "") {
+			getServletContext().getRequestDispatcher("/AddCheck.jsp").forward(request, response);
+		}else{
+			getServletContext().getRequestDispatcher("/Add.jsp").forward(request, response);
+		}
+
+
 	}
 
 	/**
@@ -70,5 +82,5 @@ public class AddBL extends HttpServlet {
 		//doGet(request, response);
 	}
 
-
+}
 
