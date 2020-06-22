@@ -45,7 +45,7 @@
 
 	<tr>
 		<td width="100" align="right">電話番号 : </td>
-		<td class="texter box" align="left"><input type="tel" name="tel"  width="100" value=<%= tel 6%>></td>
+		<td class="texter box" align="left"><input type="tel" name="tel"  width="100" value=<%= tel %>></td>
 		<td></td>
 
 	</tr>
@@ -57,7 +57,7 @@
 		<td width="100"><input type="submit" value="戻る" class="btn btn2"></td>
 	</tr>
 
-	
+
 </table>
 	<%= errmsg %>
 

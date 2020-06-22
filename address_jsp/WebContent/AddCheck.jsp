@@ -21,21 +21,21 @@
 		<table  class="sampleTable">
 			<tr>
 				<td width="100" align="right">名前* : </td>
-				<td class="texter box" align="left"><%= name %></td>
+				<td class="texter box" align="left"><%= name %><input type="hidden" name="name" value=<%= name %>></td>
 				<td></td>
 
 			</tr>
 
 			<tr>
 				<td width="100" align="right">住所* : </td>
-				<td class="add box" colspan="2" align="left"><%= address %></td>
+				<td class="add box" colspan="2" align="left"><%= address %><input type="hidden" name="address" value=<%= address %>></td>
 
 
 			</tr>
 
 			<tr>
 				<td width="100" align="right">電話番号 : </td>
-				<td class="texter box" align="left"><%= tel %></td>
+				<td class="texter box" align="left"><%= tel %><input type="hidden" name="tel" value=<%= tel %>></td>
 				<td></td>
 
 			</tr>
