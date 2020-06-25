@@ -37,7 +37,7 @@ public class AddCommitBL extends HttpServlet {
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 
 
-
+		
 		String name=request.getParameter("name");
 		String address=request.getParameter("address");
 		String tel=request.getParameter("tel");
@@ -48,7 +48,7 @@ public class AddCommitBL extends HttpServlet {
 		String tel3=tel.substring(9,13);
 		tel=tel1 + tel2 + tel3;
 
-		//DB取得用のクエリを作成し（INSERT文）InsQueryへ設定している
+		//DB登録用のクエリを作成し（INSERT文）InsQueryへ設定している
 		String InsQuery="INSERT INTO jyusyoroku (name,address,tel,delete_flg)VALUES('"+ name + "','" + address + "','" + tel + "','" + "0')";
 
 
