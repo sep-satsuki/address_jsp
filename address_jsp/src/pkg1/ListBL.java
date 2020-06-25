@@ -2,6 +2,7 @@ package pkg1;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
@@ -36,8 +37,8 @@ public class ListBL extends HttpServlet {
 		Connection connect=null;
 		PreparedStatement ps=null;
 		ResultSet rs=null;
-		int listCnt=0;
-		String SelectQuery="INSERT INTO jyusyoroku (id,name,address,tel)VALUES('"+ name + "','" + address + "','" + tel + "','" + "0')";;
+		int listCnt;
+		String SelectQuery="";
 		//取得対象全件数を取得するクエリ
 		String CntQuery="SELECT COUNT(*) FROM jyusyoroku";
 		String nowPage="";
@@ -52,11 +53,60 @@ public class ListBL extends HttpServlet {
 			nowPage=request.getParameter("page");
 		}
 		//limitStaに(nowPage-1)*10の値を設定
-		int limitSta=(nowPage - 1) * 10;
+		int limitSta=(Integer.parseInt(nowPage) -1) * 10;
 
 		//文字コードの設定
 		request.setCharacterEncoding("UTF-8");
 
+
+		final String URL
+	    = "jdbc:mysql://localhost:3306/abe?serverTimezone=JST";
+	    final String USER = "root";
+	    final String PASS = "";
+	    //final String SQL = "select * from jyusyoroku;";
+
+	    try {
+	    	//Mysqlに繋げている（道順）
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		} catch (ClassNotFoundException e1) {
+			// TODO 自動生成された catch ブロック
+			e1.printStackTrace();
+		}
+	    //DBの鍵
+	    try(Connection conn =
+	            DriverManager.getConnection(URL, USER, PASS);
+	    		//connが必要、connと(繋ぎたいSQL)をセットで使う
+	        PreparedStatement ps = conn.prepareStatement(InsQuery)){
+
+	    }
+	    //6を実施し、結果をlistCntに設定↓
+	    //引数のSQLを設定したものがps（変数）に入ってる、sqlの実行準備ができた
+	    ps= connect.preparaStatement(CntQuery);
+	    //excuteQuery(クエリを実行してくれる)が実行したものがrsに入る、rsにはSQL文の結果が入ってる
+	    rs= ps.executeQuery();
+	    //listCntにフィールド(count)の値を取得して、返却している
+	    listCnt= rs.getInt("count");
+
+
+
+
+		//リクエスト(Serchname）がnullの時に・・
+		if (request.getParameter("Serchname") == null) {
+			//SELECT文（取得クエリ）で取得し、where（条件）を指定、パラメーターでLIMIT句を指定している(limitStaから10行目まで limtStaは変数
+			SelectQuery="SELECT id,name,address,tel from jyusyoroku where delete_flg='0' Limit " + limitSta + ",10";
+		}else{
+		//リクエスト(Serchname）がnullじゃない時
+			SerchName=request.getParameter("Serchname");
+			///SELECT文（取得クエリ）で取得し、where（条件）を指定、SerchNameは変数なので""の外に出して+をつける 文字列は''で囲む、%%は部分一致
+			SelectQuery="SELECT id,name,address,tel from jyusyoroku where delete_flg='0' address Like '%" + SerchName + "%' Limit" + limitSta + ",10";
+		}
+
+
+
+
+
+		//List.jspへ画面遷移
+		getServletContext().getRequestDispatcher("/List.jsp").forward(request.response);
 
 	}
 
