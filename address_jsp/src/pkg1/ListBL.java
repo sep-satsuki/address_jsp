@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,17 +23,17 @@ public class ListBL extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ListBL() {
-        super();
+    //public ListBL() {
+    //    super();
         // TODO Auto-generated constructor stub
-    }
+   // }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+	//	response.getWriter().append("Served at: ").append(request.getContextPath());
 
 		Connection connect=null;
 		PreparedStatement ps=null;
@@ -42,12 +43,12 @@ public class ListBL extends HttpServlet {
 		//取得対象全件数を取得するクエリ
 		String CntQuery="SELECT COUNT(*) FROM jyusyoroku";
 		String nowPage="";
-		String SerchName=(String) request.getAttribute(null);
+		String SerchName=(String) request.getAttribute("SearchName");
 
 
 
 		//pageがnullの場合はnowPageに初期値1を設定、null以外の場合はnowPageにリクエスト("page")を設定
-		if("page"==null) {
+		if(request.getParameter("page")==null) {
 			nowPage="1";
 		}else {
 			nowPage=request.getParameter("page");
@@ -68,24 +69,45 @@ public class ListBL extends HttpServlet {
 	    try {
 	    	//Mysqlに繋げている（道順）
 			Class.forName("com.mysql.cj.jdbc.Driver");
+
+			
+
 		} catch (ClassNotFoundException e1) {
 			// TODO 自動生成された catch ブロック
 			e1.printStackTrace();
 		}
-	    //DBの鍵
-	    try(Connection conn =
-	            DriverManager.getConnection(URL, USER, PASS);
-	    		//connが必要、connと(繋ぎたいSQL)をセットで使う
-	        PreparedStatement ps = conn.prepareStatement(InsQuery)){
 
-	    }
+	    // DBに接続
+	    try {
+			connect = DriverManager.getConnection(URL, USER, PASS);
+		} catch (SQLException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		}
+
+
 	    //6を実施し、結果をlistCntに設定↓
 	    //引数のSQLを設定したものがps（変数）に入ってる、sqlの実行準備ができた
-	    ps= connect.preparaStatement(CntQuery);
+	    try {
+			ps= connect.prepareStatement(CntQuery);
+		} catch (SQLException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		}
 	    //excuteQuery(クエリを実行してくれる)が実行したものがrsに入る、rsにはSQL文の結果が入ってる
-	    rs= ps.executeQuery();
+	    try {
+			rs= ps.executeQuery();
+		} catch (SQLException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		}
 	    //listCntにフィールド(count)の値を取得して、返却している
-	    listCnt= rs.getInt("count");
+	    try {
+			listCnt= rs.getInt("count");
+		} catch (SQLException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		}
 
 
 
@@ -101,12 +123,23 @@ public class ListBL extends HttpServlet {
 			SelectQuery="SELECT id,name,address,tel from jyusyoroku where delete_flg='0' address Like '%" + SerchName + "%' Limit" + limitSta + ",10";
 		}
 
-
-
-
+	    //SelectQueryの準備をしている、引数のSQLを設定したものがps（変数）に入ってる、sqlの実行準備ができた
+	    try {
+			ps= connect.prepareStatement(SelectQuery);
+		} catch (SQLException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		}
+	    //rs（変数）にSelectQueryのSQLの実行結果を代入
+	    try {
+			rs= ps.executeQuery();
+		} catch (SQLException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		}
 
 		//List.jspへ画面遷移
-		getServletContext().getRequestDispatcher("/List.jsp").forward(request.response);
+		getServletContext().getRequestDispatcher("/List.jsp").forward(request,response);
 
 	}
 
