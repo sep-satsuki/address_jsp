@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<% 
+<%
 	//AddBLから値を受け取っている
 	String name=(String)request.getAttribute("name");
 	String address =(String)request.getAttribute("address");
 	String tel=(String)request.getAttribute("tel");
-	
+
 %>
 
 
@@ -43,17 +43,17 @@
 			<tr>
 				<td width="100"></td>
 																								<% //formactionは遷移先%>
-				<td width="100"align="left"><input type="submit" value="確認" class="btn btn1" formaction="AddCommitBL"></td>
-					
+				<td width="100"align="left"><input type="submit" value="登録" class="btn btn1" formaction="AddCommitBL"></td>
+
 				<td width="100"><input type="submit" value="戻る" class="btn btn2" formaction="Add.jsp"></td>
 			</tr>
 
 
 		</table>
-	
-	
-	
-	
+
+
+
+
 	</form>
 
 

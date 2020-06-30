@@ -38,10 +38,10 @@ public class ListBL extends HttpServlet {
 		Connection connect=null;
 		PreparedStatement ps=null;
 		ResultSet rs=null;
-		int listCnt;
+		int listCnt = 0;
 		String SelectQuery="";
 		//取得対象全件数を取得するクエリ
-		String CntQuery="SELECT COUNT(*) FROM jyusyoroku";
+		String CntQuery="SELECT COUNT(*) count FROM jyusyoroku";
 		String nowPage="";
 		String SerchName=(String) request.getAttribute("SearchName");
 
@@ -70,7 +70,7 @@ public class ListBL extends HttpServlet {
 	    	//Mysqlに繋げている（道順）
 			Class.forName("com.mysql.cj.jdbc.Driver");
 
-			
+
 
 		} catch (ClassNotFoundException e1) {
 			// TODO 自動生成された catch ブロック
@@ -103,6 +103,7 @@ public class ListBL extends HttpServlet {
 		}
 	    //listCntにフィールド(count)の値を取得して、返却している
 	    try {
+	    	rs.next();
 			listCnt= rs.getInt("count");
 		} catch (SQLException e) {
 			// TODO 自動生成された catch ブロック
@@ -137,6 +138,13 @@ public class ListBL extends HttpServlet {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
 		}
+	    //List.jspに値を渡している
+	    request.setAttribute("listCnt",listCnt);
+		request.setAttribute("Result",rs);
+		request.setAttribute("page",nowPage);
+
+
+
 
 		//List.jspへ画面遷移
 		getServletContext().getRequestDispatcher("/List.jsp").forward(request,response);
