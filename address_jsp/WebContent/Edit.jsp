@@ -28,7 +28,7 @@
 
 		<table  class="sampleTable">
 			<tr>
-				<input type="hidden" name="id">
+				<input type="hidden" name="id" value=<%= id %>>
 				<td width="100" align="right">名前* : </td>
 				 																<% //サーブレットから受け取った値をテキストボックスに入れている(value=)%>
 				<td class="texter box" align="left"><input type="text" name="name" width="100" value=<%= name %>></td>

@@ -37,7 +37,7 @@ public class AddCommitBL extends HttpServlet {
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 
 
-		
+
 		String name=request.getParameter("name");
 		String address=request.getParameter("address");
 		String tel=request.getParameter("tel");

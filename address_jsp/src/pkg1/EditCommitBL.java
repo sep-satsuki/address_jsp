@@ -2,8 +2,10 @@ package pkg1;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -34,7 +36,7 @@ public class EditCommitBL extends HttpServlet {
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 
 		Connection connect=null;
-		PreparedStatement ps=null;
+
 		ResultSet rs=null;
 		String UpdQuery="";
 		String id=request.getParameter("id");
@@ -50,11 +52,39 @@ public class EditCommitBL extends HttpServlet {
 
 
 		//DB取得用のクエリを作成しUpdQueryへ設定している
-		UpdQuery="SELECT name,address,tel from jyusyoroku where ID=id" + name + address + tel + id;
+		UpdQuery="UPDATE jyusyoroku SET name='" + name+ "',address='" + address+  "',tel='" + tel + "' Where ID=" + id;
 
 
-		getServletContext().getRequestDispatcher("/ListBL").forward(request, response);
 
+		final String URL
+	    = "jdbc:mysql://localhost:3306/abe?serverTimezone=JST";
+	    final String USER = "root";
+	    final String PASS = "";
+	    //final String SQL = "select * from jyusyoroku;";
+
+	    try {
+	    	//Mysqlに繋げている（道順）
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		} catch (ClassNotFoundException e1) {
+			// TODO 自動生成された catch ブロック
+			e1.printStackTrace();
+		}
+	    //DBの鍵
+	    try(Connection conn =
+	            DriverManager.getConnection(URL, USER, PASS);
+	    		//connが必要、connと(繋ぎたいSQL)をセットで使う
+	        PreparedStatement ps = conn.prepareStatement(UpdQuery)){
+
+
+	    	//DBに変更をかけている
+	    	int i = ps.executeUpdate();
+
+	    } catch (SQLException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		}
+	    //ListBLに遷移している
+	    getServletContext().getRequestDispatcher("/ListBL").forward(request, response);
 
 	}
 

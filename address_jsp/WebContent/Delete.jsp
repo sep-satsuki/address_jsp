@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <%
 	String id=request.getParameter("id");
-	String name="";
-	String address="";
-	String tel="";
+	String name=request.getParameter("name");
+	String address=request.getParameter("address");
+	String tel=request.getParameter("tel");
 	ResultSet rs=null;
 %>
 
@@ -21,7 +21,7 @@
 	<form method="GET">
 			<table  class="sampleTable">
 				<tr>
-					<input type="hidden" name="id">
+					<input type="hidden" name="id" value=<%= id %>>
 					<td width="100" align="left">名前　　　　：　</td>
 					<td class="texter box" align="left"><%= name %><input type="hidden" name="name" value=<%= name %>></td>
 					<td></td>

@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 
 <%
+	String id=(String)request.getAttribute("id");
 	String name=(String)request.getAttribute("name");
 	String address=(String)request.getAttribute("address");
 	String tel=(String)request.getAttribute("tel");
@@ -19,6 +20,7 @@
 		<form method="GET">
 			<table  class="sampleTable">
 				<tr>
+					<input type="hidden" name="id" value=<%= id %>>
 					<td width="100" align="right">名前* : </td>
 					<td class="texter box" align="left"><%= name %><input type="hidden" name="name" value=<%= name %>></td>
 					<td></td>
