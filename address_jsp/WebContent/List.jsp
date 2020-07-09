@@ -25,11 +25,11 @@ if(listCnt % 10 > 0){
 </head>
 <body>
 <p>住所録管理システム：住所録一覧</p>
-<form method="GET" action="./Add.jsp">
+<form method="GET" action="./ListBL">
 <input type="submit" value="新規登録" >
 </form>
-<input type="text" name="SearchName">
-<input type="submit" value="検索">
+<input type="text" name="SerchName">
+<input type="submit" value="検索" >
 <form>
 
 	<table border="1">

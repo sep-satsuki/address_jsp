@@ -43,7 +43,7 @@ public class ListBL extends HttpServlet {
 		//取得対象全件数を取得するクエリ
 		String CntQuery="SELECT COUNT(*) count FROM jyusyoroku";
 		String nowPage="";
-		String SerchName=(String) request.getAttribute("SearchName");
+		String SerchName=(String) request.getParameter("SerchName");
 
 
 
@@ -114,12 +114,11 @@ public class ListBL extends HttpServlet {
 
 
 		//リクエスト(Serchname）がnullの時に・・
-		if (request.getParameter("Serchname") == null) {
+		if (SerchName == null) {
 			//SELECT文（取得クエリ）で取得し、where（条件）を指定、パラメーターでLIMIT句を指定している(limitStaから10行目まで limtStaは変数
 			SelectQuery="SELECT id,name,address,tel from jyusyoroku where delete_flg='0' Limit " + limitSta + ",10";
 		}else{
 		//リクエスト(Serchname）がnullじゃない時
-			SerchName=request.getParameter("Serchname");
 			///SELECT文（取得クエリ）で取得し、where（条件）を指定、SerchNameは変数なので""の外に出して+をつける 文字列は''で囲む、%%は部分一致
 			SelectQuery="SELECT id,name,address,tel from jyusyoroku where delete_flg='0' address Like '%" + SerchName + "%' Limit" + limitSta + ",10";
 		}
