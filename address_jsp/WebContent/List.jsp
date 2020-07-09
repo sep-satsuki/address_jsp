@@ -5,7 +5,7 @@
 <%
 ResultSet rs=(ResultSet)request.getAttribute("Result");
 int listCnt=(int)request.getAttribute("listCnt");
-String nowPage=(String)request.getAttribute("Page");
+String nowPage=(String)request.getAttribute("page");
 int maxPage=0;
 
 
@@ -20,16 +20,19 @@ if(listCnt % 10 > 0){
 
 <html>
 <head>
+<link rel="stylesheet" href="List.css">
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
 <p>住所録管理システム：住所録一覧</p>
-<form method="GET" action="./ListBL">
+<form method="GET" action="./Add.jsp">
 <input type="submit" value="新規登録" >
 </form>
+<form>
 <input type="text" name="SerchName">
 <input type="submit" value="検索" >
+</form>
 <form>
 
 	<table border="1">
@@ -63,6 +66,29 @@ if(listCnt % 10 > 0){
 		</form>
 		<% }%>
 	</table>
+
+
+
+<ul>
+<!--equest.setAttribute("page") -->
+<%= nowPage %>
+<%
+	int Npage = Integer.parseInt(nowPage);
+%>
+	<li><a href=<%= "./ListBL?page=" + String.valueOf(Npage)%>>&lt;&lt;</a></li>
+	<li><a href=<%= "./ListBL?page=" + String.valueOf(Npage -1) %>>&lt;</a></li>
+	<li><a href=<%="./ListBL?page=" +  String.valueOf(Npage -2) %>><%= Npage- 2 %></a></li>
+	<li><a href=<%= "./ListBL?page=" + String.valueOf(Npage -1) %>><%= Npage - 1 %></a></li>
+	<li><a href=<%= "./ListBL?page=" + String.valueOf(Npage)%> ><%=Npage %></a></li>
+	<li><a href=<%= "./ListBL?page=" + String.valueOf(Npage + 1)%>><%=Npage + 1 %></a></li>
+	<li><a href=<%= "./ListBL?page=" + String.valueOf(Npage + 2)%>><%=Npage + 2%></a></li>
+	<li><a href=<%= "./ListBL?page=" + String.valueOf(Npage + 1)%>>&gt;</a></li>
+	<li><a href="#">&gt;&gt;</a></li>
+
+</ul>
+
+
+
 </form>
 <form method="GET" action="./Add.jsp">
 <input type="submit" value="新規登録">

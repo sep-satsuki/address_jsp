@@ -45,7 +45,6 @@ public class DeleteCommitBL extends HttpServlet {
 		//DB更新用（削除として）のクエリを作成しUpdQueryへ設定している
 		UpdQuery="UPDATE jyusyoroku SET delete_flg ='1' Where ID=" +  id;
 
-		getServletContext().getRequestDispatcher("/ListBL").forward(request, response);
 
 		final String URL
 	    = "jdbc:mysql://localhost:3306/abe?serverTimezone=JST";
@@ -69,6 +68,7 @@ public class DeleteCommitBL extends HttpServlet {
 
 	    	//DBに変更をかけている
 	    	int i = ps.executeUpdate();
+	    	getServletContext().getRequestDispatcher("/ListBL").forward(request, response);
 
 	    } catch (SQLException e) {
 			// TODO 自動生成された catch ブロック

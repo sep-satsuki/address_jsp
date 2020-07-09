@@ -1,2 +1,7 @@
 @charset "UTF-8";
 
+
+li {
+	display:inline;
+	list-style:none;
+}

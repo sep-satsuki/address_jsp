@@ -120,7 +120,7 @@ public class ListBL extends HttpServlet {
 		}else{
 		//リクエスト(Serchname）がnullじゃない時
 			///SELECT文（取得クエリ）で取得し、where（条件）を指定、SerchNameは変数なので""の外に出して+をつける 文字列は''で囲む、%%は部分一致
-			SelectQuery="SELECT id,name,address,tel from jyusyoroku where delete_flg='0' address Like '%" + SerchName + "%' Limit" + limitSta + ",10";
+			SelectQuery="SELECT id,name,address,tel from jyusyoroku where delete_flg='0' and  address Like '%" + SerchName + "%' Limit " + limitSta + ",10";
 		}
 
 	    //SelectQueryの準備をしている、引数のSQLを設定したものがps（変数）に入ってる、sqlの実行準備ができた
@@ -143,6 +143,8 @@ public class ListBL extends HttpServlet {
 		request.setAttribute("page",nowPage);
 
 
+		
+		
 
 
 		//List.jspへ画面遷移
