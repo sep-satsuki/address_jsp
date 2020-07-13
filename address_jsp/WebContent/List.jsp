@@ -83,9 +83,49 @@ if(listCnt % 10 > 0){
 	<li><a href=<%= "./ListBL?page=" + String.valueOf(Npage + 1)%>><%=Npage + 1 %></a></li>
 	<li><a href=<%= "./ListBL?page=" + String.valueOf(Npage + 2)%>><%=Npage + 2%></a></li>
 	<li><a href=<%= "./ListBL?page=" + String.valueOf(Npage + 1)%>>&gt;</a></li>
-	<li><a href="#">&gt;&gt;</a></li>
+	<li><a href=<%= "./ListBL?page=(maxPage)"%>>&gt;&gt;</a></li>
 
 </ul>
+
+ 
+if(nowpage < 3){
+	<ul>
+	
+		<li><a href="./ListBL?page= 1">&lt;&lt;</a></li>
+		<li><a href=<%= "./ListBL?page=" + String.valueOf(Npage -1) %>>&lt;</a></li>
+		<li><a href=<%= "./ListBL?page=" + String.valueOf(Npage)%> ><%=Npage %></a></li>
+		<li><a href=<%= "./ListBL?page=" + String.valueOf(Npage + 1)%>><%=Npage + 1 %></a></li>
+		<li><a href=<%= "./ListBL?page=" + String.valueOf(Npage + 2)%>><%=Npage + 2%></a></li>
+		<li><a href=<%= "./ListBL?page=" + String.valueOf(Npage + 3)%>><%=Npage + 2%></a></li>
+		<li><a href=<%= "./ListBL?page=" + String.valueOf(Npage + 4)%>><%=Npage + 2%></a></li>
+		<li><a href=<%= "./ListBL?page=" + String.valueOf(Npage + 5)%>><%=Npage + 2%></a></li>
+		<li><a href=<%= "./ListBL?page=" + String.valueOf(Npage + 1)%>>&gt;</a></li>
+		<li><a href=<%= "./ListBL?page=" + String.valueOf(maxPage)%>>&gt;&gt;</a></li>
+	
+	</ul>
+
+}elseif(nowpage > maxpage - 2 ){
+
+	<ul>
+		<li><a href="./ListBL?page= 1">&lt;&lt;</a></li>
+		<li><a href=<%= "./ListBL?page=" + String.valueOf(Npage -1) %>>&lt;</a></li>
+		<li><a href=<%= "./ListBL?page=" + String.valueOf(Npage + 3)%>><%=Npage + 2%></a></li>
+		<li><a href=<%= "./ListBL?page=" + String.valueOf(Npage + 4)%>><%=Npage + 2%></a></li>
+		<li><a href=<%= "./ListBL?page=" + String.valueOf(Npage + 5)%>><%=Npage + 2%></a></li>
+		<li><a href=<%= "./ListBL?page=" + String.valueOf(Npage + 6)%>><%=Npage + 2%></a></li>
+		<li><a href=<%= "./ListBL?page=" + String.valueOf(Npage + 7)%>><%=Npage + 2%></a></li>
+		<li><a href=<%= "./ListBL?page=" + String.valueOf(Npage + 1)%>>&gt;</a></li>
+		<li><a href=<%= "./ListBL?page=" + String.valueOf(maxPage)%>>&gt;&gt;</a></li>
+	
+	</ul>
+}else{
+
+
+
+
+
+
+
 
 
 
