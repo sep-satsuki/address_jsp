@@ -93,8 +93,8 @@
       pagenation += "<li><<</li>";
       pagenation += "<li><</li>";
     } else {
-      pagenation += "<li><a href=\"./ListBL?Page=1\"><<</a></li>";
-      pagenation += "<li><a href=\"./ListBL?Page=" + (currentPage - 1) + "\"><</a></li>";
+      pagenation += "<li><a href=\"./ListBL?page=1\"><<</a></li>";
+      pagenation += "<li><a href=\"./ListBL?page=" + (currentPage - 1) + "\"><</a></li>";
     }
 
     //ページ数リンクの作成
@@ -102,7 +102,7 @@
       if(currentPage == i) {
         pagenation += "<li class=\"current-page\">" + i + "</li>";
       } else {
-        pagenation += "<li><a href=\"./ListBL?Page=" + i + "\">" + i + "</a></li>";
+        pagenation += "<li><a href=\"./ListBL?page=" + i + "\">" + i + "</a></li>";
       }
     }
 
@@ -111,8 +111,8 @@
       pagenation += "<li>></li>";
       pagenation +=	"<li>>></li>";
     } else {
-      pagenation += "<li><a href=\"./ListBL?Page=" + (currentPage + 1) + "\">></a></li>";
-      pagenation += "<li><a href=\"./ListBL?Page=" + maxPage + "\">>></a></li>";
+      pagenation += "<li><a href=\"./ListBL?page=" + (currentPage + 1) + "\">></a></li>";
+      pagenation += "<li><a href=\"./ListBL?page=" + maxPage + "\">>></a></li>";
     }
     pagenation += "</ul>";
 
