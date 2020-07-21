@@ -59,7 +59,9 @@
 
 
 		</table>
-		<%= errmsg %>
+	<%if(errmsg!=null){ %>
+	<%= errmsg%>
+	<%} %>
 
 	</form>
 

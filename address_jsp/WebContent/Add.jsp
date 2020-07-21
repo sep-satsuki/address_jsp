@@ -31,21 +31,21 @@
 	<tr>
 		<td width="100" align="right">名前* : </td>
 		 																<% //サーブレットから受け取った値をテキストボックスに入れている(value=)%>
-		<td class="texter box" align="left"><input type="text" name="name" width="100" value=<%= name %>></td>
+		<td class="texter box" align="left"><input type="text" name="name" width="100"></td>
 		<td></td>
 
 	</tr>
 
 	<tr>
 		<td width="100" align="right">住所* : </td>
-		<td class="add box" colspan="2" align="left"><input type="text" name="address"  width="200" size="48"value=<%= address %>></td>
+		<td class="add box" colspan="2" align="left"><input type="text" name="address"  width="200" size="48"></td>
 
 
 	</tr>
 
 	<tr>
 		<td width="100" align="right">電話番号 : </td>
-		<td class="texter box" align="left"><input type="tel" name="tel"  width="100" value=<%= tel %>></td>
+		<td class="texter box" align="left"><input type="tel" name="tel"  width="100"></td>
 		<td></td>
 
 	</tr>
@@ -59,8 +59,9 @@
 
 
 </table>
-	<%= errmsg %>
-
+<%if(errmsg!=null){ %>
+	<%= errmsg%>
+<%} %>
 </form>
 
 </body>

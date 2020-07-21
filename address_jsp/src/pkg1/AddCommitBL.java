@@ -70,6 +70,7 @@ public class AddCommitBL extends HttpServlet {
 	    try(Connection conn =
 	            DriverManager.getConnection(URL, USER, PASS);
 	    		//connが必要、connと(繋ぎたいSQL)をセットで使う
+	    		
 	        PreparedStatement ps = conn.prepareStatement(InsQuery)){
 
 
