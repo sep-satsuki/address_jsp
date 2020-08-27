@@ -55,7 +55,6 @@ public class AddBL extends HttpServlet {
 			errmsg=ERRMSG_ADDRESS02 + "<BR>";
 		}else if(tel.getBytes().length >  0 && !(tel.matches("[0-9]{3}-[0-9]{4}-[0-9]{4}")) ) {
 			errmsg=ERRMSG_TEL01 + "<BR>";
-
 		}
 
 		//サーブレットからjspへ渡している

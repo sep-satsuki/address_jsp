@@ -45,15 +45,22 @@ public class EditBL extends HttpServlet {
 		//エラーメッセージ
     	if( 40 < name.getBytes().length ) {
     		errmsg=ERRMSG_NAME01 + "<BR>";
-    	}else if(name.getBytes().length == 0) {
-    		errmsg=ERRMSG_NAME02 + "<BR>";
-		}else if (80 <  address.getBytes().length) {
-			errmsg=ERRMSG_ADDRESS01 + "<BR>";
-		}else if(address.getBytes().length == 0) {
-			errmsg=ERRMSG_ADDRESS02 + "<BR>";
-		}else if(tel.getBytes().length >  0 && !(tel.matches("[0-9]{3}-[0-9]{4}-[0-9]{4}")) ) {
-			errmsg=ERRMSG_TEL01 + "<BR>";
-
+    	}
+    	
+    	if(name.getBytes().length == 0) {
+    		errmsg= errmsg + ERRMSG_NAME02 + "<BR>";
+		}
+    	
+    	if (80 <  address.getBytes().length) {
+			errmsg= errmsg + ERRMSG_ADDRESS01 + "<BR>";
+		}
+    	
+    	if(address.getBytes().length == 0) {
+			errmsg= errmsg + ERRMSG_ADDRESS02 + "<BR>";
+		}
+    	
+    	if(tel.getBytes().length >  0 && !(tel.matches("[0-9]{3}-[0-9]{4}-[0-9]{4}")) ) {
+			errmsg= errmsg + ERRMSG_TEL01 + "<BR>";
 		}
 
     	//サーブレットからjspへ渡している

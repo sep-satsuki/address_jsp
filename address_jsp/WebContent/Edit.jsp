@@ -7,7 +7,8 @@
 	String name=(String)request.getParameter("name");
 	String address=(String)request.getParameter("address");
 	String tel=(String)request.getParameter("tel");;
-	String errmsg=(String)request.getParameter("errmsg");
+	//String errmsg=(String)request.getParameter("errmsg");
+	String errmsg=(String)request.getAttribute("errmsg");
 	ResultSet rs=null;
 
 

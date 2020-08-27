@@ -149,11 +149,12 @@
 		<% while(rs.next()){ %>
 
 				<%String tel=rs.getString("tel");%>
+				<%if(tel.getBytes().length >0){ %>
 				<%String tel1=tel.substring(0,3); %>
 				<%String tel2=tel.substring(3,7); %>
 				<%String tel3=tel.substring(7,11);%>
 				<%tel=tel1 + "-"  + tel2 + "-" + tel3; %>
-
+<%} %>
 		<form method="get" name="<%= rs.getString("id")%>">
 
 			<tr>

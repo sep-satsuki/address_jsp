@@ -43,10 +43,12 @@ public class AddCommitBL extends HttpServlet {
 		String tel=request.getParameter("tel");
 
 		// telの‐を無くし、一部を切り出ししている
+		if(tel.getBytes().length >  0 && (tel.matches("[0-9]{3}-[0-9]{4}-[0-9]{4}")) ) {
 		String tel1=tel.substring(0,3);
 		String tel2=tel.substring(4,8);
 		String tel3=tel.substring(9,13);
 		tel=tel1 + tel2 + tel3;
+		}
 
 		//DB登録用のクエリを作成し（INSERT文）InsQueryへ設定している
 		String InsQuery="INSERT INTO jyusyoroku (name,address,tel,delete_flg)VALUES('"+ name + "','" + address + "','" + tel + "','" + "0')";
@@ -70,7 +72,7 @@ public class AddCommitBL extends HttpServlet {
 	    try(Connection conn =
 	            DriverManager.getConnection(URL, USER, PASS);
 	    		//connが必要、connと(繋ぎたいSQL)をセットで使う
-	    		
+
 	        PreparedStatement ps = conn.prepareStatement(InsQuery)){
 
 

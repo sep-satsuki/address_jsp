@@ -16,7 +16,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<p>住所録確認システム：住所録編集</p>
+	<p>住所録管理システム：住所録編集</p>
 		<form method="GET">
 			<table  class="sampleTable">
 				<tr>
